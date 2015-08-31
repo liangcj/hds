@@ -31,12 +31,24 @@ hdslc.fast <- function(S, betahat, m){
   return(S3hat*S1hat/(S2hat^2))
 }
 
+#' Hazard discrimination summary (local constant) standard error estimate
+#'
+#' \code{hdslcse.fast} calculates an estimate of the standard error for the
+#' local constant hazard discrimination summary estimator at a time t. The time
+#' t is implied by \code{S}, \code{betahat}, and \code{betahatse}
+#'
+#' @param S A vector of length \code{nrow(m)} (which is typically the number of
+#' observations n), where each value is the subject-specific survival at time t
+#' where t is implied by the choice of \code{betahat}.
+#' @param betahat A p x 1 vector of coefficient estimates at time t of interest
+#'   from the local-in-time Cox model. Vector length p is the number of
+#'   covariates. Typically the output from \code{hdslc::finda} is passed here.
+#' @param m A numeric n x p matrix of covariate values, with a column for each
+#'   covariate and each observation is on a separate row.
+#' @param betahatse A p x p covariance matrix for betahat at time t
+#' @return The HDS estimate at times t, where t is implied by choice of \code{S}
+#' and \code{betahat} passed to \code{hdslc.fast}.
 hdslcse.fast <- function(S, betahat, m, betahatse){
-  # S: vector of length nrow(m) with subject-specific survivals at t for each m
-  # betahat: beta values at time t (estimates using finda())
-  # betahatse: betahat variance matrix at time t
-  # t is implied by the choice of S and betahat
-  # estimate SE of HDS at time t under local constant PH (cai and sun 2003)
   if(is.null(dim(m))) m <- matrix(m)
   else                m <- matrix(m, ncol=ncol(m))
   n    <- nrow(m)
@@ -67,7 +79,7 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 #'
 #' A local constant version of \code{hds}. While \code{hds} estimates HDS(t)
 #' assuming the Cox proportional hazards model, \code{hdslc} estimates HDS(t)
-#' using a relaxed, local-in-time Cox model. Specifically, where the hazard
+#' using a relaxed, local-in-time Cox model. Specifically, the hazard
 #' ratios are allowed to vary with time. See Cai and Sun (2003, Scandinavian
 #' Journal of Statistics) and Tian Zucker Wei (2005, JASA) for details on the
 #' local-in-time Cox model.

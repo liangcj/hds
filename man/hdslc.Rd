@@ -5,7 +5,7 @@
 \title{Hazard discrimination summary estimator}
 \usage{
 hdslc(times, status, m, evaltimes = times[order(times)], h = 1.06 *
-  sd(times) * (length(times)^0.2))
+  sd(times) * (length(times)^(-0.2)))
 }
 \arguments{
 \item{times}{A vector of observed follow up times.}
@@ -38,7 +38,7 @@ times
 \details{
 A local constant version of \code{hds}. While \code{hds} estimates HDS(t)
 assuming the Cox proportional hazards model, \code{hdslc} estimates HDS(t)
-using a relaxed, local-in-time Cox model. Specifically, where the hazard
+using a relaxed, local-in-time Cox model. Specifically, the hazard
 ratios are allowed to vary with time. See Cai and Sun (2003, Scandinavian
 Journal of Statistics) and Tian Zucker Wei (2005, JASA) for details on the
 local-in-time Cox model.
