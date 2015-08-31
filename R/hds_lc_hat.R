@@ -33,9 +33,12 @@ hdslc.fast <- function(S, betahat, m){
 
 #' Hazard discrimination summary (local constant) standard error estimate
 #'
-#' \code{hdslcse.fast} calculates an estimate of the standard error for the
+#' \code{hdslcse.fast} calculates an estimate of the variance for the
 #' local constant hazard discrimination summary estimator at a time t. The time
 #' t is implied by \code{S}, \code{betahat}, and \code{betahatse}
+#'
+#' The use will typically not interact with this function directly. Instead this
+#' function is wrapped by \code{hdslc}.
 #'
 #' @param S A vector of length \code{nrow(m)} (which is typically the number of
 #' observations n), where each value is the subject-specific survival at time t
@@ -46,8 +49,9 @@ hdslc.fast <- function(S, betahat, m){
 #' @param m A numeric n x p matrix of covariate values, with a column for each
 #'   covariate and each observation is on a separate row.
 #' @param betahatse A p x p covariance matrix for betahat at time t
-#' @return The HDS estimate at times t, where t is implied by choice of \code{S}
-#' and \code{betahat} passed to \code{hdslc.fast}.
+#' @return Variance estimate that has not been normalized. To get a usable
+#'   standard error estimate, divide the output of this function by the
+#'   bandwidth and sample size, and then take the square root.
 hdslcse.fast <- function(S, betahat, m, betahatse){
   if(is.null(dim(m))) m <- matrix(m)
   else                m <- matrix(m, ncol=ncol(m))
@@ -145,6 +149,7 @@ hdslc <- function(times,
                            m = m_s, h = h, evalt)
   hdslcseres <- apply(matrix(1:evaln), 1, function(x){
     hdslcse.fast(es[x,], betaD[x, ], m_s, betase[x,,])})
+  hdslcseres <- sqrt(hdslcseres/(h*length(times_s)))
   return(data.frame(times=evaltimes, hdslchat=hdslcres, se=hdslcseres))
 }
 

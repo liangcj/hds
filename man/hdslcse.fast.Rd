@@ -21,12 +21,17 @@ covariate and each observation is on a separate row.}
 \item{betahatse}{A p x p covariance matrix for betahat at time t}
 }
 \value{
-The HDS estimate at times t, where t is implied by choice of \code{S}
-and \code{betahat} passed to \code{hdslc.fast}.
+Variance estimate that has not been normalized. To get a usable
+  standard error estimate, divide the output of this function by the
+  bandwidth and sample size, and then take the square root.
 }
 \description{
-\code{hdslcse.fast} calculates an estimate of the standard error for the
+\code{hdslcse.fast} calculates an estimate of the variance for the
 local constant hazard discrimination summary estimator at a time t. The time
 t is implied by \code{S}, \code{betahat}, and \code{betahatse}
+}
+\details{
+The use will typically not interact with this function directly. Instead this
+function is wrapped by \code{hdslc}.
 }
 

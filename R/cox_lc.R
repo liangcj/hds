@@ -69,8 +69,21 @@ finda <- function(tt, times, status, covars, start=rep(0, ncol(covars)), h=400,.
   return(fit$par)
 }
 
-
-betahatse.fast <- function(betahat, times, status, m, h=650, evalt){
+#' Calculate estimates of the covariance matrix for beta(t).
+#'
+#' To help with overall computational efficiency of \code{hdslc}, this function
+#' will return multiple covariance matrices - one covariance matrix for each
+#' requested evaluation time.
+#'
+#' See Cai and Sun (2003, Scandinavian Journal of Statistics) for details on the
+#' local constant estimator for beta(t). The user will not typically interact
+#' with this function. The function is wrapped by \code{hdslc}, and the output
+#' is used by \code{hdslcse.fast}.
+#'
+#' @return An N x p x p matrix, where N is the number of evaluation times and
+#'   p is the number of covariates.
+#' @importFrom tensor tensor
+betahatse.fast <- function(betahat, times, status, m, h, evalt){
   n  <- length(status)
   evaln <- length(evalt)
   #evalt <- round(seq(1, n, length.out=100))
