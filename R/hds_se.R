@@ -1,5 +1,6 @@
 cVV  <- function(time, m, status, betahat, betavar, n){
   # used by the hds_se() function to calculate the covariance between beta and Lambda_0
+  # returns an n x (p+1) matrix, where p is number of covariates
   if(is.null(dim(m))) m <- matrix(m, ncol=1)
   z0e <- exp(m%*%betahat) %*% rep(1, ncol(m))
   z1e <- m*z0e
@@ -26,13 +27,12 @@ cVV  <- function(time, m, status, betahat, betavar, n){
                cnum%*%betavar))
 }
 
-hds_se <- function(time, status, m, evaltimes=time){
+hds_se <- function(time, status, m, evaltimes){
   fit     <- coxph(Surv(time, status)~m)
   betahat <- matrix(fit$coef, ncol=1)
   betavar <- fit$var
   L0hat   <- basehaz(fit, centered=TRUE)
   cVVout  <- cVV(time, m, status, betahat, betavar, fit$n) ### come back to this
-  #  se      <- rep(NA, nrow(L0hat))
   se      <- rep(NA, length(evaltimes))
 
   if(is.null(dim(m))) m <- matrix(m, ncol=1)
@@ -40,12 +40,11 @@ hds_se <- function(time, status, m, evaltimes=time){
   bm   <- m%*%betahat
   bmm  <- bm %*% rep(1, ncol(m))
   ebmm <- exp(bmm)
-  #  for(i in 1:nrow(L0hat)){ ## THIS NEEDS TO CHANGE TO MATCH UP WITH CVVOUT
-  for(i in 1:length(evaltimes)){ ## THIS NEEDS TO CHANGE TO MATCH UP WITH CVVOUT
+  for(i in 1:length(evaltimes)){
     if(evaltimes[i]<min(L0hat$time) | evaltimes[i]>max(L0hat$time)){
+      # if evaluation time is outside of observed times, set to NA
       se[i]    <- NA
     } else{
-      #    Lh      <- L0hat$hazard[i]
       Lh <- L0hat$hazard[findInterval(evaltimes[i], L0hat$time)]
       C  <- exp(2*bmm - ebmm*Lh)
       B  <- exp(bmm - ebmm*Lh)
@@ -81,7 +80,8 @@ hds_se <- function(time, status, m, evaltimes=time){
       gradient <- c(mean(C[,1])/(mean(B[,1])^2), -2*mean(A[,1])*mean(C[,1])/(mean(B[,1])^3), mean(A[,1])/(mean(B[,1])^2))
       var2     <- gradient%*%sigma%*%gradient
 
-      se[i]    <- sqrt((var1+var2)/fit$n) # we can do this b/c cov should be zero
+      se[i]    <- sqrt((var1+var2)/fit$n)
+      # we can do this b/c cov should be zero (asymptotically)
       #    cat(var1, var2, se[i], "\n")
     }
   }
