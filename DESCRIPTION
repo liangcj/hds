@@ -7,8 +7,9 @@ Date: 2015-04-18
 Authors@R: person("Jason", "Liang", email="liangcj@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/liangcj/hds
 BugReports: https://github.com/liangcj/hds/issues
-Imports: 
-  survival
+Imports:
+  survival,
+  tensor
 License: MIT
 LazyData: TRUE
 Suggests: knitr

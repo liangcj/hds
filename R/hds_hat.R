@@ -61,7 +61,7 @@ hds <- function(times, status, m, evaltimes=times[order(times)]){
     # center the covariates
 #    m[,i] <- m[,i] - mean(m[,i])
 #  }
-  fit <- coxph(Surv(times, status)~m, x = TRUE)
+  fit <- coxph(Surv(times, status)~as.matrix(m), x = TRUE)
   L0  <- basehaz(fit)
   m <- fit$x
   m <- scale(m, scale = FALSE)     # center marker values

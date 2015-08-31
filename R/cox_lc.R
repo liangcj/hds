@@ -97,7 +97,7 @@ betahatse.fast <- function(betahat, times, status, m, h, evalt){
   mouter <- array(NA, dim=c(dim(m), ncol(m)))
   for(i in 1:n){mouter[i, , ] <- m[i, ] %o% m[i, ]}
   S2 <- array(NA, dim=c(n, ncol(m), ncol(m)))
-  for(i in 1:n){S2[i, , ] <- tensor(ebmm[i,i:n, drop=FALSE], mouter[i:n, , , drop=FALSE], 2, 1)/n}
+  for(i in 1:n){S2[i, , ] <- tensor::tensor(ebmm[i,i:n, drop=FALSE], mouter[i:n, , , drop=FALSE], 2, 1)/n}
   A <- sweep(S2, 1, S0, "/")
   Btmp <- sweep(S1, 1, S0, "/")
   B <- array(NA, dim=c(dim(m), ncol(m)))
@@ -106,7 +106,7 @@ betahatse.fast <- function(betahat, times, status, m, h, evalt){
   tmat <- apply(matrix(times[evalt]), 1, function(x) times-x)
   # each i-th column is the n times minus the i-th time
   K <- ((1-((tmat)/h)^2)*0.75/h)*(1-((tmat)/h)^2 >= 0) # epanechnikov kernel
-  integ <- tensor(V, K, 1, 1)/n
+  integ <- tensor::tensor(V, K, 1, 1)/n
   I <- array(NA, dim=c(evaln, ncol(m), ncol(m)))
   for(i in 1:evaln){
     try(I[i, , ] <- solve(integ[ , , i]))
