@@ -62,5 +62,33 @@ particularly relevant for the standard error calculations.
 hdslc(times = survival::pbc[1:312, 2],
       status = (survival::pbc[1:312, 3]==2)*1,
       m = survival::pbc[1:312, 5])
+
+hdsres   <- hds(times=pbc5[,1], status=pbc5[,2], m=pbc5[,3:7])
+hdslcres <- hdslc(times = pbc5[,1], status=pbc5[,2], m = pbc5[,3:7], h = 730)
+Survt    <- summary(survfit(Surv(pbc5[,1], pbc5[,2])~1))
+Survtd   <- cbind(Survt$time, c(0,diff(1-Survt$surv)))
+tden     <- density(x=tmp2[,1], weights=tmp2[,2], bw=100, kernel="epanechnikov")
+
+par(mar=c(2.25,2.25,0,0)+0.1, mgp=c(1.25,0.5,0))
+plot(c(hdslcres[,1], hdslcres[,1]), c(hdslcres[,2] - 1.96*hdslcres[,3],
+                                      hdslcres[,2] + 1.96*hdslcres[,3]),
+     type="n", xlab="days", ylab="HDS(t)", cex.lab=.75, cex.axis=.75,
+     ylim=c(-3,15), xlim=c(0,3650))
+polygon(x=c(hdsres[,1], hdsres[312:1,1]), col=rgb(1,0,0,.25), border=NA,
+        fillOddEven=TRUE, y=c(hdsres[,2]+1.96*hdsres[,3],
+                              (hdsres[,2]-1.96*hdsres[,3])[312:1]))
+polygon(x=c(hdslcres[,1], hdslcres[312:1, 1]), col=rgb(0,0,1,.25), border=NA,
+        fillOddEven=TRUE, y=c(hdslcres[,2] + 1.96*hdslcres[,3],
+                              (hdslcres[,2] - 1.96*hdslcres[,3])[312:1]))
+lines(hdsres[,1], hdsres[,2], lwd=2, col="red")
+lines(hdslcres[,1], hdslcres[,2], lwd=2, col="blue")
+abline(h=1, lty=3)
+legend(x=1200, y=14, legend=c("Proportional hazards",
+                              "Local-in-time proportional hazards",
+                              "Time density"), col=c("red", "blue", "gray"),
+       lwd=2, bty="n", cex=0.75)
+with(tden, polygon(c(x, x[length(x):1]),
+                   c(y*3/max(y)-3.5, rep(-3.5, length(x))),
+                   col="gray", border=NA, fillOddEven=TRUE))
 }
 
