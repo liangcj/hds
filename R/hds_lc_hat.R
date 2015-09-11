@@ -111,6 +111,10 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 #' @param h A single numeric value representing the bandwdith to use, on the
 #'   time scale. The default bandwidth is a very ad hoc estimate using
 #'   Silverman's rule of thumb
+#' @param se TRUE or FALSE. TRUE: calculate and return standard error estimates.
+#'   FALSE: do not calculate standard errors estimates and return NAs. Defaults
+#'   to TRUE. May want to set to FALSE to save computation time if using this
+#'   function to compute bootstrap standard errors.
 #' @examples
 #' hdslc(times = survival::pbc[1:312, 2],
 #'       status = (survival::pbc[1:312, 3]==2)*1,
@@ -124,7 +128,8 @@ hdslc <- function(times,
                   status,
                   m,
                   evaltimes=times[order(times)],
-                  h=1.06*sd(times)*(length(times)^(-0.2))){
+                  h=1.06*sd(times)*(length(times)^(-0.2)),
+                  se=TRUE){
   m   <- as.matrix(m)
   fit <- coxph(Surv(times, status)~m, x = TRUE)
   m   <- fit$x
@@ -145,11 +150,15 @@ hdslc <- function(times,
   es <- sssf.fast(betat = betaD, status = status_s, m = m_s, evalt)
   hdslcres <- apply(matrix(1:evaln), 1, function(x)
     hdslc.fast(es[x, ], betaD[x, ], m_s))
-  betase <- betahatse.fast(betahat = betaD, times = times_s, status = status_s,
-                           m = m_s, h = h, evalt)
-  hdslcseres <- apply(matrix(1:evaln), 1, function(x){
-    hdslcse.fast(es[x,], betaD[x, ], m_s, betase[x,,])})
-  hdslcseres <- sqrt(hdslcseres/(h*length(times_s)))
+  hdslcseres <- rep(NA, evaln)
+  if(se){
+    # calculate standard errors if se=TRUE
+    betase <- betahatse.fast(betahat = betaD, times = times_s, status = status_s,
+                             m = m_s, h = h, evalt)
+    hdslcseres <- apply(matrix(1:evaln), 1, function(x){
+      hdslcse.fast(es[x,], betaD[x, ], m_s, betase[x,,])})
+    hdslcseres <- sqrt(hdslcseres/(h*length(times_s)))
+  }
   return(data.frame(times=evaltimes, hdslchat=hdslcres, se=hdslcseres))
 }
 

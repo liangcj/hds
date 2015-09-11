@@ -48,6 +48,10 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   the times specified by the \code{times} vector. If there are a lot of
 #'   observations, then you may want to enter in a sparser vector of times for
 #'   faster computation.
+#' @param se TRUE or FALSE. TRUE: calculate and return standard error estimates.
+#'   FALSE: do not calculate standard errors estimates and return NAs. Defaults
+#'   to TRUE. May want to set to FALSE to save computation time if using this
+#'   function to compute bootstrap standard errors.
 #' @examples
 #' hds(times = survival::pbc[1:312, 2], status = (survival::pbc[1:312, 3]==2)*1,
 #'     m = survival::pbc[1:312, 5])
@@ -56,7 +60,7 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   each evaluation time
 #' @export
 #' @importFrom survival Surv coxph basehaz
-hds <- function(times, status, m, evaltimes=times[order(times)]){
+hds <- function(times, status, m, evaltimes=times[order(times)], se=TRUE){
 #  for(i in 1:ncol(m)){
     # center the covariates
 #    m[,i] <- m[,i] - mean(m[,i])
@@ -73,7 +77,10 @@ hds <- function(times, status, m, evaltimes=times[order(times)]){
 #  L0         <- basehaz(fit, centered=TRUE)  # calculate baseline cumulative hazard
   pt_est <- apply(matrix(evaltimes), 1,
                  function(x) hds_t(t=x, L0hat=L0, betahat=fit$coef, m=m_s)) # calculate HDS(t) at all times
-  pt_se  <- hds_se(time=times_s, status=status_s, m=m_s, evaltimes=evaltimes)
+  pt_se  <- rep(NA, length(evaltimes))
+  if(se){
+    pt_se  <- hds_se(time=times_s, status=status_s, m=m_s, evaltimes=evaltimes)
+  }
   return(data.frame(times=evaltimes, hdshat=pt_est, se=pt_se))
 }
 
