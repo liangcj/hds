@@ -5,7 +5,7 @@
 \title{Hazard discrimination summary estimator}
 \usage{
 hdslc(times, status, m, evaltimes = times[order(times)], h = 1.06 *
-  sd(times) * (length(times)^(-0.2)))
+  sd(times) * (length(times)^(-0.2)), se = TRUE)
 }
 \arguments{
 \item{times}{A vector of observed follow up times.}
@@ -25,6 +25,11 @@ faster computation.}
 \item{h}{A single numeric value representing the bandwdith to use, on the
 time scale. The default bandwidth is a very ad hoc estimate using
 Silverman's rule of thumb}
+
+\item{se}{TRUE or FALSE. TRUE: calculate and return standard error estimates.
+FALSE: do not calculate standard errors estimates and return NAs. Defaults
+to TRUE. May want to set to FALSE to save computation time if using this
+function to compute bootstrap standard errors.}
 }
 \value{
 A data frame with three columns: 1) the evaluation times, 2) the HDS

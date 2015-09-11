@@ -147,6 +147,7 @@ hdslc <- function(times,
   betaD <- apply(matrix(times_s[evalt]), 1, function(x)
     finda(x, times=times_s, status=status_s, covars=m_s, h=h))
   betaD <- t(betaD)
+  if(nrow(betaD)==1) betaD <- t(betaD)
   es <- sssf.fast(betat = betaD, status = status_s, m = m_s, evalt)
   hdslcres <- apply(matrix(1:evaln), 1, function(x)
     hdslc.fast(es[x, ], betaD[x, ], m_s))

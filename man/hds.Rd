@@ -4,7 +4,7 @@
 \alias{hds}
 \title{Hazard discrimination summary estimator}
 \usage{
-hds(times, status, m, evaltimes = times[order(times)])
+hds(times, status, m, evaltimes = times[order(times)], se = TRUE)
 }
 \arguments{
 \item{times}{A vector of observed follow up times.}
@@ -20,6 +20,11 @@ matrix through \code{survival::coxph}.}
 the times specified by the \code{times} vector. If there are a lot of
 observations, then you may want to enter in a sparser vector of times for
 faster computation.}
+
+\item{se}{TRUE or FALSE. TRUE: calculate and return standard error estimates.
+FALSE: do not calculate standard errors estimates and return NAs. Defaults
+to TRUE. May want to set to FALSE to save computation time if using this
+function to compute bootstrap standard errors.}
 }
 \value{
 A data frame with three columns: 1) the evaluation times, 2) the HDS
