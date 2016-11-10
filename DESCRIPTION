@@ -11,7 +11,7 @@ BugReports: https://github.com/liangcj/hds/issues
 Imports:
     survival,
     tensor
-License: MIT
+License: GPL-2
 LazyData: TRUE
 Suggests:
     knitr
