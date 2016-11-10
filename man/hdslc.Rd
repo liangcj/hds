@@ -65,9 +65,9 @@ hdslc(times = survival::pbc[1:312, 2],
 
 hdsres   <- hds(times=pbc5[,1], status=pbc5[,2], m=pbc5[,3:7])
 hdslcres <- hdslc(times = pbc5[,1], status=pbc5[,2], m = pbc5[,3:7], h = 730)
-Survt    <- summary(survfit(Surv(pbc5[,1], pbc5[,2])~1))
+Survt    <- summary(survival::survfit(survival::Surv(pbc5[,1], pbc5[,2])~1))
 Survtd   <- cbind(Survt$time, c(0,diff(1-Survt$surv)))
-tden     <- density(x=tmp2[,1], weights=tmp2[,2], bw=100, kernel="epanechnikov")
+tden     <- density(x=Survtd[,1], weights=Survtd[,2], bw=100, kernel="epanechnikov")
 
 par(mar=c(2.25,2.25,0,0)+0.1, mgp=c(1.25,0.5,0))
 plot(c(hdslcres[,1], hdslcres[,1]), c(hdslcres[,2] - 1.96*hdslcres[,3],
