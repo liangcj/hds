@@ -53,12 +53,12 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   to TRUE. May want to set to FALSE to save computation time if using this
 #'   function to compute bootstrap standard errors.
 #' @examples
-#' hds(times = survival::pbc[1:312, 2], status = (survival::pbc[1:312, 3]==2)*1,
-#'     m = survival::pbc[1:312, 5])
+#' head(hds(times = survival::pbc[1:312, 2], status = (survival::pbc[1:312, 3]==2)*1,
+#'     m = survival::pbc[1:312, 5]))
 #'
 #' hdsres   <- hds(times=pbc5[,1], status=pbc5[,2], m=pbc5[,3:7])
 #' hdslcres <- hdslc(times = pbc5[,1], status=pbc5[,2], m = pbc5[,3:7], h = 730)
-#' Survt    <- summary(survfit(Surv(pbc5[,1], pbc5[,2])~1))
+#' Survt    <- summary(survival::survfit(survival::Surv(pbc5[,1], pbc5[,2])~1))
 #' Survtd   <- cbind(Survt$time, c(0,diff(1-Survt$surv)))
 #' tden     <- density(x=tmp2[,1], weights=tmp2[,2], bw=100, kernel="epanechnikov")
 #'
