@@ -21,4 +21,5 @@ local constant estimator for beta(t). The user will not typically interact
 with this function. The function is wrapped by \code{hdslc}, and the output
 is used by \code{hdslcse.fast}.
 }
+\keyword{internal}
 
