@@ -82,6 +82,7 @@ finda <- function(tt, times, status, covars, start=rep(0, ncol(covars)), h=400,.
 #'
 #' @return An N x p x p matrix, where N is the number of evaluation times and
 #'   p is the number of covariates.
+#' @keywords internal
 #' @importFrom tensor tensor
 betahatse.fast <- function(betahat, times, status, m, h, evalt){
   n  <- length(status)
