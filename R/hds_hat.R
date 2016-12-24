@@ -53,8 +53,10 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   to TRUE. May want to set to FALSE to save computation time if using this
 #'   function to compute bootstrap standard errors.
 #' @examples
-#' head(hds(times = survival::pbc[1:312, 2], status = (survival::pbc[1:312, 3]==2)*1,
-#'     m = survival::pbc[1:312, 5]))
+#' \dontrun{
+#' head(hds(times = survival::pbc[1:312, 2],
+#'          status = (survival::pbc[1:312, 3]==2)*1,
+#'          m = survival::pbc[1:312, 5]))
 #'
 #' hdsres   <- hds(times=pbc5[,1], status=pbc5[,2], m=pbc5[,3:7])
 #' hdslcres <- hdslc(times = pbc5[,1], status=pbc5[,2], m = pbc5[,3:7], h = 730)
@@ -83,6 +85,7 @@ hds_t <- function(t, L0hat, betahat, m){
 #' with(tden, polygon(c(x, x[length(x):1]),
 #'                    c(y*3/max(y)-3.5, rep(-3.5, length(x))),
 #'                    col="gray", border=NA, fillOddEven=TRUE))
+#' }
 #'
 #' @return A data frame with three columns: 1) the evaluation times, 2) the HDS
 #'   estimates at each evaluation time, and 3) the standard error estimates at

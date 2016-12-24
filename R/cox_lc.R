@@ -34,6 +34,7 @@
 #'   covariates. Defaults to all zeroes.
 #' @param h A single value on the time scale representing the bandwidth to use.
 #' @param ... Additional parameters to pass to \code{optim}.
+#' @importFrom stats optim
 #' @return A vector of length p, where p is the number of covariates. The vector
 #' is the estimated beta(t) from the local-in-time Cox model at time \code{tt}.
 finda <- function(tt, times, status, covars, start=rep(0, ncol(covars)), h=400,...){

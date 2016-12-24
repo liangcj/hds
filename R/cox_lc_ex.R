@@ -1,5 +1,6 @@
 ## examples for local-in-time Cox model
 
+#' @importFrom stats runif
 rt <- function(x1,x2){
   # generates random survival times using Cai and Sun (2003) simulation example
   (1/x1)*log(-(x1*log(runif(length(x1)))/(exp(0.5*x2)))+1)
@@ -38,6 +39,7 @@ S <- function(t, x1, x2){
 #   cat(tt, " ", hdstruecs[i], '\n')
 # }
 
+#' @importFrom stats runif rnorm
 do.one.cs.fast <- function(n=500, h=0.5, evaltimes="fast"){
   # evaltimes="fast" defaults to calculating at only 100 evenly spaced
   # times between 0.02 and 2

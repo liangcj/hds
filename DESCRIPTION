@@ -1,14 +1,15 @@
 Package: hds
 Type: Package
-Version: 0.0.0.9000
+Version: 0.8.0
 Title: Hazard Discrimination Summary
 Description: Functions for calculating the hazard discrimination summary and its
-    standard errors, as described in Liang & Heagerty 2015.
-Date: 2015-04-18
-Authors@R: person("Jason", "Liang", email="liangcj@gmail.com", role = c("aut", "cre"))
+    standard errors, as described in Liang & Heagerty 2016.
+Date: 2016-11-26
+Authors@R: person("C. Jason", "Liang", email="liangcj@gmail.com", role = c("aut", "cre"))
 URL: https://github.com/liangcj/hds
 BugReports: https://github.com/liangcj/hds/issues
 Imports:
+    stats,
     survival,
     tensor
 License: GPL-2

@@ -2,6 +2,10 @@
 
 export(hds)
 export(hdslc)
+importFrom(stats,optim)
+importFrom(stats,rnorm)
+importFrom(stats,runif)
+importFrom(stats,sd)
 importFrom(survival,Surv)
 importFrom(survival,basehaz)
 importFrom(survival,coxph)
