@@ -1,7 +1,7 @@
 # Hazard discrimination summary
 R package for estimating the hazard discrimination summary (HDS). HDS is a measure of time-varying prognostic performance. It can be thought of as an incident, time-varying extension of the discrimination slope (Yates 1982), which is perhaps better known as an important part of the integrated discrimination improvement (IDI; Pencina et al. 2008). Alternatively, HDS is a risk-based complement to the incident/dynamic time-dependent AUC (Heagerty and Zheng 2005). Under some circumstances, HDS also has interesting connections to the Cox model partial likelihood. For a detailed overview of HDS, see Liang and Heagerty (2016) and the related discussions and rejoinder.
 
-#### Installation
+## Installation
 To install through CRAN, use
 ```r
 install.packages("hds")
@@ -12,7 +12,7 @@ To install the latest (though not necessarily stable) GitHub version, make sure 
 devtools::install_github("liangcj/hds")
 ```
 
-#### Example
+## Example
 A simple example using the Mayo PBC data from the `survival` package demonstrating both `hds` (estimator based on the Cox model) and `hdslc` (more flexible estimator based on the local-in-time Cox model):
 ```r
 head(hds(times = survival::pbc[1:312, 2],
@@ -48,7 +48,8 @@ with(tden, polygon(c(x, x[length(x):1]),
                    col="gray", border=NA, fillOddEven=TRUE))
 ```
 
-#### References
+## References
+#### HDS paper, discussions, rejoinder
 Liang CJ and Heagerty PJ (2016). A risk-based measure of time-varying prognostic discrimination for survival models. *Biometrics*. doi:10.1111/biom.12628
 
 Gerds TA and Schumacher M (2016). Discussion of “A risk-based measure of time-varying prognostic discrimination for survival models,” by C. Jason Liang and Patrick J. Heagerty. *Biometrics*. doi:10.1111/biom.12629
@@ -59,18 +60,28 @@ Michael H and Tian L (2016). Discussion of “a risk-based measure of time-varyi
 
 Liang CJ and Heagerty PJ (2016). Rejoinder to discussions on: A risk-based measure of time-varying prognostic discrimination for survival models. *Biometrics*. doi:10.1111/biom.12632
 
+#### Time-dependent ROC and AUC papers
 Saha-Chaudhuri P and Heagerty PJ (2013). Non-parametric estimation of a time-dependent predictive accuracy curve. *Biostatistics*, 14(1), 42-59. doi: 10.1093/biostatistics/kxs021
 
+Heagerty PJ and Zheng Y (2005). Survival model predictive accuracy and ROC curves. *Biometrics*, 61: 92–105. doi:10.1111/j.0006-341X.2005.030814.x
+
+Heagerty PJ, Lumley T, and Pepe MS (2000). Time-Dependent ROC curves for censored survival data and a diagnostic marker. *Biometrics*, 56: 337–344. doi:10.1111/j.0006-341X.2000.00337.x
+
+#### Partial extensions of DS and IDI to survival data
 Uno H, Tian L, Cai T, Kohane IS, and Wei LJ (2013). A unified inference procedure for a class of measures to assess improvement in risk prediction systems with survival data. *Statistics in Medicine*, 32: 2430–2442. doi:10.1002/sim.5647
 
 Chambless LE, Cummiskey CP, and Cui G (2011). Several methods to assess improvement in risk prediction models: Extension to survival analysis. *Statistics in Medicine*, 30: 22–38. doi:10.1002/sim.4026
 
+#### Paper that introduced IDI (and also NRI), and original paper that mentioned DS
 Pencina MJ, D' Agostino, RB, D' Agostino, RB, and Vasan RS (2008). Evaluating the added predictive ability of a new marker: From area under the ROC curve to reclassification and beyond. *Statistics in Medicine*, 27: 157–172. doi:10.1002/sim.2929
+
+Yates JF (1982). External correspondence: Decompositions of the mean probability score. *Organizational Behavior and Human Performance*, 30: 132–156. doi:10.1016/0030-5073(82)90237-9
+
+#### Empirical process result, and comprehensive study of the Cox model with time-varying coefficients (used for development of HDS estimator and asymptotics)
+van der Vaart AW and Wellner JA (2007). Empirical processes indexed by estimated functions. *IMS Lecture Notes Monograph
+Series*, 55: 234–252. doi:10.1214/074921707000000382
 
 Tian L, Zucker D, and Wei LJ (2005). On the Cox model with time-varying regression coefficients. *Journal of the American Statistical Association*, 100(469):172-83. doi:10.1198/016214504000000845
 
-Heagerty PJ and Zheng Y (2005). Survival Model Predictive Accuracy and ROC Curves. *Biometrics*, 61: 92–105. doi:10.1111/j.0006-341X.2005.030814.x
-
-Heagerty PJ, Lumley T, and Pepe MS (2000). Time-Dependent ROC Curves for Censored Survival Data and a Diagnostic Marker. *Biometrics*, 56: 337–344. doi:10.1111/j.0006-341X.2000.00337.x
-
-Yates JF (1982). External correspondence: Decompositions of the mean probability score. *Organizational Behavior and Human Performance*, 30: 132–156. doi:10.1016/0030-5073(82)90237-9
+Cai Z and Sun Y (2003). Local linear estimation for time-dependent coefficients in Cox’s regression models. *Scandinavian
+Journal of Statistics* 30: 93–111. doi:10.1111/1467-9469.00320
