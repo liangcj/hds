@@ -32,7 +32,8 @@ A data frame with three columns: 1) the evaluation times, 2) the HDS
   each evaluation time
 }
 \description{
-\code{hds} returns HDS estimates at all specified evaluation times
+Returns hazard discimination summary (HDS) estimates at all specified evaluation
+times. See Liang and Heagerty (2016) for details on HDS.
 }
 \details{
 A wrapper for \code{hds_t}. Since \code{hds_t} only estimates HDS at one time
@@ -78,5 +79,10 @@ with(tden, polygon(c(x, x[length(x):1]),
                    col="gray", border=NA, fillOddEven=TRUE))
 }
 
+}
+\references{
+Liang CJ and Heagerty PJ (2016).
+  A risk-based measure of time-varying prognostic discrimination for survival
+  models. Biometrics. doi: 10.1111/biom.12628
 }
 

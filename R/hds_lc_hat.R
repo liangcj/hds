@@ -78,8 +78,8 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 
 #' Hazard discrimination summary estimator
 #'
-#' \code{hdslc} returns local constant HDS estimates at all specified evaluation
-#' times
+#' Returns local constant HDS estimates at all specified evaluation times.
+#' See Liang and Heagerty (2016) for details on HDS.
 #'
 #' A local constant version of \code{hds}. While \code{hds} estimates HDS(t)
 #' assuming the Cox proportional hazards model, \code{hdslc} estimates HDS(t)
@@ -115,6 +115,9 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 #'   FALSE: do not calculate standard errors estimates and return NAs. Defaults
 #'   to TRUE. May want to set to FALSE to save computation time if using this
 #'   function to compute bootstrap standard errors.
+#' @references Liang CJ and Heagerty PJ (2016).
+#'   A risk-based measure of time-varying prognostic discrimination for survival
+#'   models. Biometrics. doi: 10.1111/biom.12628
 #' @examples
 #' \dontrun{
 #' head(hdslc(times = survival::pbc[1:312, 2],

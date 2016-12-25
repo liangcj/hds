@@ -28,7 +28,8 @@ hds_t <- function(t, L0hat, betahat, m){
 
 #' Hazard discrimination summary estimator
 #'
-#' \code{hds} returns HDS estimates at all specified evaluation times
+#' Returns hazard discimination summary (HDS) estimates at all specified evaluation
+#' times. See Liang and Heagerty (2016) for details on HDS.
 #'
 #' A wrapper for \code{hds_t}. Since \code{hds_t} only estimates HDS at one time
 #' point, this function calls \code{hds_t} multiple times to estimate the entire
@@ -52,6 +53,9 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   FALSE: do not calculate standard errors estimates and return NAs. Defaults
 #'   to TRUE. May want to set to FALSE to save computation time if using this
 #'   function to compute bootstrap standard errors.
+#' @references Liang CJ and Heagerty PJ (2016).
+#'   A risk-based measure of time-varying prognostic discrimination for survival
+#'   models. Biometrics. doi: 10.1111/biom.12628
 #' @examples
 #' \dontrun{
 #' head(hds(times = survival::pbc[1:312, 2],
