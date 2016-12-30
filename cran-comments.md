@@ -1,3 +1,8 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Added a DOI for the reference in the "Description" section of the DESCRIPTION file.
+
 ## Test environments
 * local Lubuntu 16.04.1 LTS install, R 3.3.2
 * local OS X install, R 3.3.2
