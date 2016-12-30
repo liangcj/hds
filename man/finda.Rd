@@ -32,14 +32,12 @@ is the estimated beta(t) from the local-in-time Cox model at time \code{tt}.
 \code{finda} estimates the time-varying coefficients beta(t) at a single time
 from a local-in-time Cox model. Think of it as a Cox model where the
 the coefficients are allowed to vary with time. Further details can be found
-in Cai and Sun (2003, Scandinavian Journal of Statistics) and Tian Zucker
-Wei (2005, JASA).
+in Cai and Sun (2003) and Tian et al. (2005).
 }
 \details{
 The naming of the function \code{finda} stands for "find a(t)", where "a(t)"
-is the notation used in Cai and Sun (2003, Scandinavian Journal of
-Statistics) to represent the time-varying Cox model coefficients. We also
-refer to "a(t)" as "beta(t)" through the documentation.
+is the notation used in Cai and Sun (2003) to represent the time-varying
+Cox model coefficients. We also refer to "a(t)" as "beta(t)" through the documentation.
 
 The user typically will not interact with this function, as \code{finda} is
 wrapped by \code{hdslc}.
