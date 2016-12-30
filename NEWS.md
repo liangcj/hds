@@ -1,4 +1,4 @@
-## hds 0.8.0 (2016-12-24; December 24, 2016)
+## hds 0.8.0 (2016-12-29; December 29, 2016)
 
 - Made changes to prepare package for initial submission to CRAN. 
 
