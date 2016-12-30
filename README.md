@@ -52,7 +52,7 @@ with(tden, polygon(c(x, x[length(x):1]),
 #### HDS paper, discussions, rejoinder
 Liang CJ and Heagerty PJ (2016). A risk-based measure of time-varying prognostic discrimination for survival models. *Biometrics*. [doi:10.1111/biom.12628](https://doi.org/10.1111/biom.12628)
 
-Gerds TA and Schumacher M (2016). Discussion of “A risk-based measure of time-varying prognostic discrimination for survival models,” by C. Jason Liang and Patrick J. Heagerty. *Biometrics*. [doi:10.1111/biom.12629](https://do.org/10.1111/biom.12629)
+Gerds TA and Schumacher M (2016). Discussion of “A risk-based measure of time-varying prognostic discrimination for survival models,” by C. Jason Liang and Patrick J. Heagerty. *Biometrics*. [doi:10.1111/biom.12629](https://doi.org/10.1111/biom.12629)
 
 Parast L and Rutter CM (2016). Discussion of “A risk-based measure of time-varying prognostic discrimination for survival models,” by C. Jason Liang and Patrick J. Heagerty. *Biometrics*. [doi:10.1111/biom.12630](https://doi.org/10.1111/biom.12630)
 
@@ -77,10 +77,11 @@ Pencina MJ, D' Agostino, RB, D' Agostino, RB, and Vasan RS (2008). Evaluating th
 
 Yates JF (1982). External correspondence: Decompositions of the mean probability score. *Organizational Behavior and Human Performance*, 30: 132–156. [doi:10.1016/0030-5073(82)90237-9](https://doi.org/10.1016/0030-5073(82)90237-9)
 
-#### Empirical process result, and comprehensive study of the Cox model with time-varying coefficients (used for development of HDS estimator and asymptotics)
+#### Empirical processes result (used for development of HDS estimator and asymptotics)
 van der Vaart AW and Wellner JA (2007). Empirical processes indexed by estimated functions. *IMS Lecture Notes Monograph
 Series*, 55: 234–252. [doi:10.1214/074921707000000382](https://doi.org/10.1214/074921707000000382)
 
+#### Thorough study of the Cox model with time-varying coefficients (used for development of HDS estimator and asymptotics)
 Tian L, Zucker D, and Wei LJ (2005). On the Cox model with time-varying regression coefficients. *Journal of the American Statistical Association*, 100(469):172-83. [doi:10.1198/016214504000000845](https://doi.org/10.1198/016214504000000845)
 
 Cai Z and Sun Y (2003). Local linear estimation for time-dependent coefficients in Cox’s regression models. *Scandinavian
