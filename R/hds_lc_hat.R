@@ -84,14 +84,13 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 #' A local constant version of \code{hds}. While \code{hds} estimates HDS(t)
 #' assuming the Cox proportional hazards model, \code{hdslc} estimates HDS(t)
 #' using a relaxed, local-in-time Cox model. Specifically, the hazard
-#' ratios are allowed to vary with time. See Cai and Sun (2003, Scandinavian
-#' Journal of Statistics) and Tian Zucker Wei (2005, JASA) for details on the
+#' ratios are allowed to vary with time. See Cai and Sun (2003) and Tian Zucker Wei (2005) for details on the
 #' local-in-time Cox model.
 #'
 #' Point estimates use \code{hdslc.fast} and standard errors use
 #' \code{hdslcse.fast}. \code{hdslc.fast} requires an estimate of beta(t) (time-varying
 #' hazard ratio), which is estimated using \code{finda()}; and subject specific
-#' survival, which is estimated using sssf.fast(). \code{hdslcse.fast} the same
+#' survival, which is estimated using sssf.fast(). \code{hdslcse.fast} requires the same
 #' and in addition standard error estimates of beta(t), which are estimated
 #' using \code{betahatse.fast()}.
 #'
@@ -117,7 +116,14 @@ hdslcse.fast <- function(S, betahat, m, betahatse){
 #'   function to compute bootstrap standard errors.
 #' @references Liang CJ and Heagerty PJ (2016).
 #'   A risk-based measure of time-varying prognostic discrimination for survival
-#'   models. Biometrics. doi: 10.1111/biom.12628
+#'   models. \emph{Biometrics}. \href{https://doi.org/10.1111/biom.12628}{doi:10.1111/biom.12628}
+#' @references Cai Z and Sun Y (2003). Local linear estimation for time-dependent coefficients
+#'   in Cox's regression models. \emph{Scandinavian Journal of Statistics}, 30: 93-111.
+#'   \href{https://doi.org/10.1111/1467-9469.00320}{doi:10.1111/1467-9469.00320}
+#' @references Tian L, Zucker D, and Wei LJ (2005). On the Cox model with time-varying
+#'   regression coefficients. \emph{Journal of the American Statistical Association},
+#'   100(469):172-83. \href{https://doi.org/10.1198/016214504000000845}{doi:10.1198/016214504000000845}
+#' @seealso \code{\link{hds}}, \code{\link{finda}}
 #' @examples
 #' \dontrun{
 #' head(hdslc(times = survival::pbc[1:312, 2],

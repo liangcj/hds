@@ -33,8 +33,8 @@ hds_t <- function(t, L0hat, betahat, m){
 #'
 #' A wrapper for \code{hds_t}. Since \code{hds_t} only estimates HDS at one time
 #' point, this function calls \code{hds_t} multiple times to estimate the entire
-#' HDS curve. It is the main function the user will interact with in this
-#' package.
+#' HDS curve. \code{hds} and \code{hdslc} are the main functions the user will
+#' interact with in this package.
 #'
 #' The covariate values \code{m} are centered for numerical stability. This is
 #' particularly relevant for the standard error calculations.
@@ -55,7 +55,8 @@ hds_t <- function(t, L0hat, betahat, m){
 #'   function to compute bootstrap standard errors.
 #' @references Liang CJ and Heagerty PJ (2016).
 #'   A risk-based measure of time-varying prognostic discrimination for survival
-#'   models. Biometrics. doi: 10.1111/biom.12628
+#'   models. \emph{Biometrics}. \href{https://doi.org/10.1111/biom.12628}{doi:10.1111/biom.12628}
+#' @seealso \code{\link{hdslc}}
 #' @examples
 #' \dontrun{
 #' head(hds(times = survival::pbc[1:312, 2],

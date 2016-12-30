@@ -38,8 +38,8 @@ times. See Liang and Heagerty (2016) for details on HDS.
 \details{
 A wrapper for \code{hds_t}. Since \code{hds_t} only estimates HDS at one time
 point, this function calls \code{hds_t} multiple times to estimate the entire
-HDS curve. It is the main function the user will interact with in this
-package.
+HDS curve. \code{hds} and \code{hdslc} are the main functions the user will
+interact with in this package.
 
 The covariate values \code{m} are centered for numerical stability. This is
 particularly relevant for the standard error calculations.
@@ -83,6 +83,9 @@ with(tden, polygon(c(x, x[length(x):1]),
 \references{
 Liang CJ and Heagerty PJ (2016).
   A risk-based measure of time-varying prognostic discrimination for survival
-  models. Biometrics. doi: 10.1111/biom.12628
+  models. \emph{Biometrics}. \href{https://doi.org/10.1111/biom.12628}{doi:10.1111/biom.12628}
+}
+\seealso{
+\code{\link{hdslc}}
 }
 

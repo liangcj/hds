@@ -38,10 +38,19 @@ Wei (2005, JASA).
 \details{
 The naming of the function \code{finda} stands for "find a(t)", where "a(t)"
 is the notation used in Cai and Sun (2003, Scandinavian Journal of
-Statistics) to represent the time-varying Cox model coefficients. I also
+Statistics) to represent the time-varying Cox model coefficients. We also
 refer to "a(t)" as "beta(t)" through the documentation.
 
 The user typically will not interact with this function, as \code{finda} is
 wrapped by \code{hdslc}.
+}
+\references{
+Cai Z and Sun Y (2003). Local linear estimation for time-dependent coefficients
+  in Cox's regression models. \emph{Scandinavian Journal of Statistics}, 30: 93-111.
+  \href{https://doi.org/10.1111/1467-9469.00320}{doi:10.1111/1467-9469.00320}
+
+Tian L, Zucker D, and Wei LJ (2005). On the Cox model with time-varying
+  regression coefficients. \emph{Journal of the American Statistical Association},
+  100(469):172-83. \href{https://doi.org/10.1198/016214504000000845}{doi:10.1198/016214504000000845}
 }
 

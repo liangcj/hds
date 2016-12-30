@@ -18,7 +18,7 @@
 #'
 #' The naming of the function \code{finda} stands for "find a(t)", where "a(t)"
 #' is the notation used in Cai and Sun (2003, Scandinavian Journal of
-#' Statistics) to represent the time-varying Cox model coefficients. I also
+#' Statistics) to represent the time-varying Cox model coefficients. We also
 #' refer to "a(t)" as "beta(t)" through the documentation.
 #'
 #' The user typically will not interact with this function, as \code{finda} is
@@ -37,6 +37,12 @@
 #' @importFrom stats optim
 #' @return A vector of length p, where p is the number of covariates. The vector
 #' is the estimated beta(t) from the local-in-time Cox model at time \code{tt}.
+#' @references Cai Z and Sun Y (2003). Local linear estimation for time-dependent coefficients
+#'   in Cox's regression models. \emph{Scandinavian Journal of Statistics}, 30: 93-111.
+#'   \href{https://doi.org/10.1111/1467-9469.00320}{doi:10.1111/1467-9469.00320}
+#' @references Tian L, Zucker D, and Wei LJ (2005). On the Cox model with time-varying
+#'   regression coefficients. \emph{Journal of the American Statistical Association},
+#'   100(469):172-83. \href{https://doi.org/10.1198/016214504000000845}{doi:10.1198/016214504000000845}
 finda <- function(tt, times, status, covars, start=rep(0, ncol(covars)), h=400,...){
   # MAKE SURE DATA IS SORTED BY TIME
   # find a(t) for local constant Cox regression as per Cai and Sun (2003)
